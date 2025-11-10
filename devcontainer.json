@@ -1,0 +1,185 @@
+{
+  "name": "AL Development",
+  "image": "mcr.microsoft.com/dotnet/runtime:8.0",
+  "runArgs": [
+    "--network=host"
+  ],
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,readonly,type=bind"
+  ],
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": false,
+      "installOhMyZsh": false,
+      "upgradePackages": false,
+      "username": "vscode",
+      "uid": "1000",
+      "gid": "1000"
+    },
+    "ghcr.io/devcontainers/features/dotnet:1": {
+      "version": "8.0",
+      "installUsingApt": false
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "containerEnv": {
+    "DOTNET_CLI_TELEMETRY_OPTOUT": "1"
+  },
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/home/vscode/.dotnet/tools"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dynamics-smb.al",
+        "andrzejzwierzchowski.al-code-outline",
+        "waldo.crs-al-language-extension",
+        "streetsidesoftware.code-spell-checker",
+        "davidfeldhoff.al-codeactions",
+        "stefanmaron.businesscentral-lintercop",
+        "nwallace.createGUID",
+        "usernamehw.errorlens",
+        "waldoBC.bc-telemetry-buddy",
+        "streetsidesoftware.code-spell-checker-german",
+        "ms-dynamics-smb.bcpt"
+      ],
+      "settings": {
+        "al.enableCodeAnalysis": true,
+        "al.backgroundCodeAnalysis": "Project",
+        "al.enableCodeActions": true,
+        "al.inlayhints.functionReturnTypes.enabled": true,
+        "al.inlayhints.parameterNames.enabled": true,
+        "al.useInteractiveLogin": false,
+        "al.codeAnalyzers": [
+          "${CodeCop}",
+          "${UICop}",
+          "${PerTenantExtensionCop}",
+          "${analyzerFolder}BusinessCentral.LinterCop.dll"
+        ],
+        "al.compilationOptions": {
+          "maxDegreeOfParallelism": 16,
+          "parallel": true
+        },
+        "[al]": {
+          "editor.defaultFormatter": "ms-dynamics-smb.al"
+        },
+        "alOutline.codeActionsOnSave": [
+          "FormatDocument",
+          "SortCustomizations",
+          "SortPermissions",
+          "SortPermissionSetList",
+          "SortProperties",
+          "SortVariables",
+          "OneStatementPerLine",
+          "SortUsings"
+        ],
+        "alOutline.codeCleanupActions": [
+          "AddApplicationAreas",
+          "AddDataClassifications",
+          "AddMissingParentheses",
+          "FixIdentifiersCase",
+          "FixKeywordsCase",
+          "FormatDocument",
+          "MakeFlowFieldsReadOnly",
+          "RemoveBeginEnd",
+          "RemoveEmptyLines",
+          "RemoveEmptySections",
+          "RemoveEmptyTriggers",
+          "RemoveRedundantAppAreas",
+          "RemoveRedundantDataClassification",
+          "RemoveStrSubstNoFromError",
+          "RemoveUnusedVariables",
+          "RemoveWithStatements",
+          "SortCustomizations",
+          "SortPermissions",
+          "SortPermissionSetList",
+          "SortProperties",
+          "SortVariables",
+          "TrimTrailingWhitespace",
+          "RemoveUnusedUsings",
+          "CollapseEmptyBrackets",
+          "OneStatementPerLine",
+          "RemoveProceduresSemicolon",
+          "SortUsings"
+        ],
+        "alOutline.variablesSortMode": "mainTypeNameOnly",
+        "alOutline.useBCLinterCopCaseRules": true,
+        "alOutline.fixCodeCopMissingParenthesesOnSave": true,
+        "alOutline.defaultAppArea": "All",
+        "alOutline.addToolTipsToPageFields": false,
+        "alOutline.completionProviders": [
+          "VariableNamesWithType"
+        ],
+        "CRS.RenameWithGit": true,
+        "CRS.FileNamePattern": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+        "CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+        "CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+        "CRS.OnSaveAlFileAction": "DoNothing",
+        "CRS.ReorganizeByNamespace": false,
+        "editor.suggest.insertMode": "insert",
+        "editor.renderControlCharacters": true,
+        "editor.formatOnSave": false,
+        "editor.foldingImportsByDefault": true,
+        "editor.inlayHints.enabled": "offUnlessPressed",
+        "editor.inlineSuggest.enabled": true,
+        "editor.renderWhitespace": "none",
+        "editor.occurrencesHighlight": "off",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.al": "always"
+        },
+        "files.exclude": {
+          "**/.svn": true,
+          "**/.hg": true,
+          "**/CVS": true,
+          "**/.DS_Store": true,
+          "**/.alcache": true,
+          ".snapshots": true,
+          "*.app": false,
+          "**/rad.json": true
+        },
+        "files.autoSave": "off",
+        "search.exclude": {
+          "**/node_modules": true,
+          "**/bower_components": true,
+          "**/*.code-search": true,
+          "**/.alcache": true
+        },
+        "search.showLineNumbers": true,
+        "cSpell.enabledFileTypes": {
+          "*": true,
+          "markdown": true,
+          "al": true,
+          "xml": false
+        },
+        "cSpell.userWords": [
+          "Belowx",
+          "businesscentral",
+          "Codeunits",
+          "Cstr",
+          "currentgroup",
+          "Factbox",
+          "IBAN",
+          "Maron",
+          "Payables",
+          "Paym",
+          "Purch",
+          "RIMDX",
+          "rolecenter",
+          "Tablix",
+          "usercontrol",
+          "Whse",
+          "WORKDATE"
+        ],
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "linterCop.autoDownload": true,
+        "diffEditor.ignoreTrimWhitespace": false
+      }
+    }
+  },
+  "remoteUser": "vscode",
+  "postCreateCommand": "dotnet --version && dotnet tool install --global Microsoft.Dynamics.BusinessCentral.Development.Tools.linux",
+  "shutdownAction": "stopContainer"
+}
