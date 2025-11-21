@@ -73,7 +73,6 @@
           "SortPermissionSetList",
           "SortProperties",
           "SortVariables",
-          "OneStatementPerLine",
           "SortUsings"
         ],
         "alOutline.codeCleanupActions": [
